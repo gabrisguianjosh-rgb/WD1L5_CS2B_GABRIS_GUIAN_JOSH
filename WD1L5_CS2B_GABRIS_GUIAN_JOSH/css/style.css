@@ -1,0 +1,646 @@
+
+/* =========================================
+   GROCERY INVENTORY SYSTEM
+   PROFESSIONAL BLACK & WHITE THEME
+========================================= */
+
+/* 1. COLOR VARIABLES */
+:root {
+    --ink: #111111;
+    --muted: #777777;
+    --bg: #080808;
+    --card: #ffffff;
+    --tomato: #222222;
+    --tomato-dark: #000000;
+    --leaf: #444444;
+    --lemon: #dddddd;
+    --line: #dddddd;
+
+    /* Category Colors */
+    --cat-produce: #555555;
+    --cat-meat: #222222;
+    --cat-dairy: #888888;
+    --cat-pantry: #666666;
+    --cat-other: #aaaaaa;
+
+    --font-head: "Georgia", serif;
+    --font-body: "Segoe UI", Arial, sans-serif;
+
+    --shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+/* 2. BASE */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: #ffffff;
+    line-height: 1.5;
+    background:
+        radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px) 0 0 / 24px 24px,
+        #080808;
+}
+
+h1, h2 {
+    font-family: var(--font-head);
+    margin: 0;
+}
+
+a {
+    color: #111111;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #666666;
+}
+
+:focus-visible {
+    outline: 3px solid #888888;
+    outline-offset: 3px;
+}
+
+/* 3. AWNING */
+.awning {
+    position: relative;
+    height: 34px;
+    margin-bottom: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        #000000 0 40px,
+        #ffffff 40px 80px
+    );
+    z-index: 5;
+}
+
+.awning::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background:
+        radial-gradient(circle at 20px 0, #000000 0 20px, transparent 21px) 0 0 / 80px 20px repeat-x,
+        radial-gradient(circle at 60px 0, #ffffff 0 20px, transparent 21px) 0 0 / 80px 20px repeat-x;
+    filter: drop-shadow(0 4px 3px rgba(0,0,0,.2));
+}
+
+.auth-page .awning {
+    grid-column: 1 / -1;
+}
+
+/* 4. FORM ELEMENTS */
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-size: .9rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+    color: #111111;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    padding: .8rem;
+    font: inherit;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    transition: .2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #111111;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+    outline: none;
+}
+
+.check {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+/* 5. BUTTONS */
+.btn {
+    padding: .8rem 1.3rem;
+    font: inherit;
+    font-weight: 700;
+    color: #ffffff;
+    background: #111111;
+    border: 1px solid #111111;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #000000;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #444444;
+}
+
+.btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #000000;
+}
+
+.btn-ghost {
+    padding: .45rem 1rem;
+    color: #111111;
+    background: transparent;
+    border: 2px solid #111111;
+    box-shadow: none;
+}
+
+.btn-ghost:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+.btn-danger {
+    margin-top: 1.4rem;
+    background: transparent;
+    color: #111111;
+    border: 2px dashed #555555;
+    box-shadow: none;
+}
+
+.btn-danger:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+/* 6. MESSAGES */
+.message {
+    min-height: 1.5rem;
+    margin: .8rem 0 0;
+    font-weight: bold;
+}
+
+.message.error {
+    color: #555555;
+}
+
+.message.success {
+    color: #111111;
+}
+
+.switch {
+    margin: .6rem 0 0;
+    font-size: .9rem;
+    color: #777777;
+    text-align: center;
+}
+
+/* 7. LOGIN AND REGISTER */
+.auth-page {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+.brand-panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 3.5rem;
+}
+
+.brand-panel h1 {
+    font-size: clamp(3rem, 7vw, 5.2rem);
+    font-style: italic;
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 #555555;
+}
+
+.brand-panel p {
+    max-width: 26ch;
+    margin: 1rem 0 1.5rem;
+    font-size: 1.25rem;
+    color: #dddddd;
+}
+
+.perks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .6rem;
+    position: relative;
+    z-index: 1;
+}
+
+.perks li {
+    width: fit-content;
+    padding: .4rem 1rem;
+    font-weight: bold;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 #555555;
+}
+
+.perks li::before {
+    content: "\2713\00a0\00a0";
+    color: #111111;
+}
+
+/* Decorative Circles */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    background: #333333;
+}
+
+.blob.b1 {
+    width: 220px;
+    height: 220px;
+    right: -60px;
+    bottom: -50px;
+}
+
+.blob.b2 {
+    width: 120px;
+    height: 120px;
+    background: #666666;
+    right: 150px;
+    bottom: 90px;
+}
+
+.blob.b3 {
+    width: 80px;
+    height: 80px;
+    background: #aaaaaa;
+    right: 40px;
+    bottom: 210px;
+}
+
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* 8. FORM CARD */
+.card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 2.6rem 2rem 2rem;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dddddd;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.3);
+    animation: dropIn .5s ease-out both;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    background: #080808;
+    border: 2px solid #555555;
+    border-radius: 50%;
+}
+
+.card h2 {
+    margin-bottom: 1.3rem;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #111111;
+}
+
+.card .btn {
+    width: 100%;
+}
+
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* 9. INVENTORY LIST PAGE */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: .3rem 1rem;
+}
+
+.logo {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 1.7rem;
+    color: #ffffff;
+}
+
+.hello {
+    margin-left: auto;
+    color: #aaaaaa;
+}
+
+.board {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: .5rem 1rem 3rem;
+    display: grid;
+    gap: 1.2rem;
+}
+
+/* 10. HERO SECTION */
+.hero {
+    padding: 1.6rem;
+    background: linear-gradient(135deg, #222222, #080808);
+    color: #ffffff;
+    border: 1px solid #444444;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.hero h1 {
+    font-size: 2rem;
+}
+
+.hero p {
+    margin: .2rem 0 1rem;
+    color: #cccccc;
+}
+
+/* Progress Bar */
+.progress {
+    height: 16px;
+    background: #444444;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#progressBar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #ffffff, #999999);
+    border-radius: 999px;
+    transition: width .4s ease;
+}
+
+/* 11. ADD ITEM FORM */
+.add-row {
+    display: grid;
+    grid-template-columns: 1fr 5.5rem 9.5rem auto;
+    gap: .8rem;
+    align-items: end;
+    padding: 1.2rem;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dddddd;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.add-row .field {
+    margin-bottom: 0;
+    min-width: 0;
+}
+
+/* 12. FILTER TABS */
+.tabs {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: .5rem 1.1rem;
+    font: inherit;
+    font-weight: bold;
+    color: #111111;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.tab:hover {
+    background: #dddddd;
+}
+
+.tab.active {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+}
+
+/* 13. INVENTORY CARD */
+.paper {
+    padding: 1.4rem;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dddddd;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.paper-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: .8rem;
+}
+
+.paper-head h2 {
+    font-size: 1.5rem;
+    color: #111111;
+}
+
+.summary-count {
+    color: #777777;
+    font-size: .9rem;
+}
+
+.empty {
+    margin: 1.5rem 0;
+    text-align: center;
+    color: #888888;
+    font-style: italic;
+}
+
+.empty[hidden] {
+    display: none;
+}
+
+/* 14. GROCERY LIST */
+#groceryList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .6rem;
+}
+
+#groceryList li {
+    --cat: var(--cat-other);
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    padding: .8rem 1rem;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dddddd;
+    border-left: 6px solid var(--cat);
+    border-radius: 10px;
+    transition: .2s;
+}
+
+#groceryList li:hover {
+    background: #f5f5f5;
+    transform: translateX(3px);
+}
+
+#groceryList li[data-cat="Produce"] {
+    --cat: var(--cat-produce);
+}
+
+#groceryList li[data-cat="Meat & Fish"] {
+    --cat: var(--cat-meat);
+}
+
+#groceryList li[data-cat="Dairy & Eggs"] {
+    --cat: var(--cat-dairy);
+}
+
+#groceryList li[data-cat="Pantry"] {
+    --cat: var(--cat-pantry);
+}
+
+/* 15. ITEM DETAILS */
+.toggle {
+    width: 1.3rem;
+    height: 1.3rem;
+    accent-color: #333333;
+    cursor: pointer;
+}
+
+.item-name {
+    flex: 1;
+    font-weight: bold;
+}
+
+.item-qty {
+    padding: .1rem .6rem;
+    font-weight: bold;
+    background: #eeeeee;
+    color: #111111;
+    border-radius: 999px;
+}
+
+.item-tag {
+    padding: .1rem .6rem;
+    font-size: .75rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: var(--cat);
+    border-radius: 6px;
+}
+
+/* 16. COMPLETED ITEMS */
+#groceryList li.done {
+    opacity: .5;
+}
+
+#groceryList li.done .item-name {
+    text-decoration: line-through;
+}
+
+/* 17. REMOVE BUTTON */
+.remove {
+    padding: .3rem .7rem;
+    font: inherit;
+    font-size: .85rem;
+    color: #111111;
+    background: transparent;
+    border: 1px solid #777777;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.remove:hover {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+}
+
+/* 18. MOBILE RESPONSIVE */
+@media (max-width: 760px) {
+    .auth-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+    }
+
+    .brand-panel {
+        padding: 1.5rem;
+    }
+
+    .blob {
+        display: none;
+    }
+
+    .add-row {
+        grid-template-columns: 1fr 5rem;
+    }
+
+    .add-row .field:nth-child(3),
+    .add-row .btn {
+        grid-column: 1 / -1;
+    }
+
+    #groceryList li {
+        flex-wrap: wrap;
+    }
+}
+
+/* 19. REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
